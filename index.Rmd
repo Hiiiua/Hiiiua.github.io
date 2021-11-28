@@ -1,0 +1,18 @@
+---
+title: "Presentation"
+author: "Muxin Hua"
+date: "11/27/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+[Markdown git deck](https://stat850-unl.github.io/12-presentation-Hiiiua/Hw12_markdown.html)
+
+[LaTex git deck](https://stat850-unl.github.io/12-presentation-Hiiiua/Hw12-LaTex.pdf)
+
+[git CV](https://stat850-unl.github.io/12-presentation-Hiiiua/resume.pdf)
+
+
