@@ -15,4 +15,5 @@ knitr::opts_chunk$set(echo = TRUE)
 
 [git CV](https://stat850-unl.github.io/12-presentation-Hiiiua/resume.pdf)
 
+[Testing ML](https://github.com/Hiiiua/Machine-Learning-1/settings/pages)
 
