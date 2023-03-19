@@ -17,5 +17,5 @@ knitr::opts_chunk$set(echo = TRUE)
 
 [Testing ML](https://github.com/Hiiiua/Machine-Learning-1/settings/pages)
 
-[Cs61A Notes](https://hiiiua.github.io/cs61A/)
+[Cs61A Notes](https://hiiiua.github.io/cs61A)
 
