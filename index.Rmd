@@ -4,13 +4,3 @@ title: "Website"
 
 Hello, Website!
 
-[Markdown git deck](https://stat850-unl.github.io/12-presentation-Hiiiua/Hw12_markdown.html)
-
-[LaTex git deck](https://stat850-unl.github.io/12-presentation-Hiiiua/Hw12-LaTex.pdf)
-
-[git CV](https://stat850-unl.github.io/12-presentation-Hiiiua/resume.pdf)
-
-[Testing ML](https://github.com/Hiiiua/Machine-Learning-1/settings/pages)
-
-[Cs61A Notes](https://hiiiua.github.io/cs61A)
-
