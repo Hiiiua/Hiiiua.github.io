@@ -21,3 +21,7 @@ navbar:
     - text: "GitHub"
       icon: fa-github
       href: https://github.com/Hiiiua
+output:
+  html_document:
+    theme: cosmo
+    highlight: textmate
