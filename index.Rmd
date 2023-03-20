@@ -4,3 +4,9 @@ title: "Website"
 
 Hello, Website!
 
+[Markdown git deck](https://stat850-unl.github.io/12-presentation-Hiiiua/Hw12_markdown.html)
+
+[LaTex git deck](https://stat850-unl.github.io/12-presentation-Hiiiua/Hw12-LaTex.pdf)
+
+
+
