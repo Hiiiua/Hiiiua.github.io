@@ -11,10 +11,10 @@ navbar:
       href: https://stat850-unl.github.io/12-presentation-Hiiiua/resume.pdf
     - text: "About"
       icon: fa-user 
-      href: https://stat850-unl.github.io/12-presentation-Hiiiua/Hw12_markdown.html
+      href: A link
     - text: "Notes"
       icon: fa-rss
-      href: https://hiiiua.github.io/cs61A
+      href: Another link
   right:
     - text: "Contact"
       icon: fa-envelope-o
