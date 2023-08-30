@@ -1,6 +1,6 @@
 ---
  title: "Ideas"
- subtitle: "Can be useless but can't let them slip my mind"
+ subtitle: "Can be useless but better not let them slip my mind"
  listing:
    contents: posts
    sort: "date desc"
