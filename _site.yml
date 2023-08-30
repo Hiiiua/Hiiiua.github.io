@@ -1,0 +1,28 @@
+name: "Website"
+output_dir: "."
+navbar:
+  title: "My Website"
+  left:
+    - text: "Home"
+      icon: fa-home
+      href: index.html
+    - text: "CV"
+      icon: fa-file-pdf-o
+      href: https://stat850-unl.github.io/12-presentation-Hiiiua/resume.pdf
+    - text: "About"
+      icon: fa-user 
+      href: A link
+    - text: "Notes"
+      icon: fa-rss
+      href: Another link
+  right:
+    - text: "Contact"
+      icon: fa-envelope-o
+      href: mailto:mhua4816@gmail.com
+    - text: "GitHub"
+      icon: fa-github
+      href: https://github.com/Hiiiua
+output:
+  html_document:
+    theme: cosmo
+    highlight: textmate
