@@ -1,0 +1,13 @@
+---
+title: "Ideas"
+subtitle: "Can be useless but can't let them slip my mind"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: true
+  # sort-ui: false
+  # filter-ui: false
+page-layout: full
+title-block-banner: true
+---
