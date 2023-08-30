@@ -1,0 +1,9 @@
+---
+title: "Aug_30_2023"
+author: "Hiiiua"
+date: "2023-08-29"
+categories: Logs
+image: "image.jpg"
+---
+
+Now it should work
