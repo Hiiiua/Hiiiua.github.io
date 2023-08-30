@@ -1,52 +1,17 @@
 [
   {
-    "objectID": "old_index.html",
-    "href": "old_index.html",
-    "title": "Website",
-    "section": "",
-    "text": "Hello, Website!"
-  },
-  {
     "objectID": "posts/welcome/Perceiptive field.html",
     "href": "posts/welcome/Perceiptive field.html",
     "title": "Does perceiptive field matter?",
     "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\nLet’s see if i can make any change\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
-  },
-  {
-    "objectID": "posts/Logs/Aug30.html",
-    "href": "posts/Logs/Aug30.html",
-    "title": "Aug_29_2023",
-    "section": "",
-    "text": "Not working?"
-  },
-  {
-    "objectID": "posts/Logs/Aug_29_2023.html",
-    "href": "posts/Logs/Aug_29_2023.html",
-    "title": "Aug_29_2023",
-    "section": "",
-    "text": "classes_dict.json\n\nUse a json file to read classes, it should be easier to rerun the model if we are training with new scheme, which has more data.\n\nVocDataset\n\nUse recurssive parsing function\nAdd area key to target for future calculating UoI\nAdd iscrowd key to target to indicated overlapping objects\n\nData directory tree\n\nTo make dataset instancing easier"
-  },
-  {
-    "objectID": "posts/Logs/Aug_29_2023.html#recent-goals",
-    "href": "posts/Logs/Aug_29_2023.html#recent-goals",
-    "title": "Aug_29_2023",
-    "section": "Recent goals",
-    "text": "Recent goals\n\nRewrite xml modification function\n\nW/H of the image –> add a get_height/width function in VocDataset\nOverlapping information as in difficult\nReprocess the xmls\nMake sure the boxes are more accurate\n\nWhat to do if “no object” show up when getting the item\nRemove the rgb in the images"
-  },
-  {
-    "objectID": "posts/Logs/Aug_29_2023.html#future-goals",
-    "href": "posts/Logs/Aug_29_2023.html#future-goals",
-    "title": "Aug_29_2023",
-    "section": "Future goals",
-    "text": "Future goals\n\nImplement the rest of the FasterRcnn\nLook into TEED\nAny changes can be made to the receptive field?\nOptimization?"
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Ideas",
     "section": "",
-    "text": "Aug_29_2023\n\n\n\n\n\n\n\nLogs\n\n\n\n\n\n\n\n\n\n\n\nAug 29, 2023\n\n\nHiiiua\n\n\n\n\n\n\n  \n\n\n\n\nAug_29_2023\n\n\n\n\n\n\n\nLogs\n\n\n\n\n\n\n\n\n\n\n\nAug 29, 2023\n\n\nHiiiua\n\n\n\n\n\n\n  \n\n\n\n\nDoes perceiptive field matter?\n\n\n\n\n\n\n\nTodos\n\n\n\n\n\n\n\n\n\n\n\nAug 9, 2023\n\n\nHiiiua\n\n\n\n\n\n\nNo matching items"
+    "text": "Aug_19_2023\n\n\n\n\n\n\n\nLogs\n\n\n\n\n\n\n\n\n\n\n\nAug 29, 2023\n\n\nHiiiua\n\n\n\n\n\n\n  \n\n\n\n\nDoes perceiptive field matter?\n\n\n\n\n\n\n\nTodos\n\n\n\n\n\n\n\n\n\n\n\nAug 9, 2023\n\n\nHiiiua\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -54,5 +19,26 @@
     "title": "About",
     "section": "",
     "text": "Let’s see what I’ll have"
+  },
+  {
+    "objectID": "posts/Logs/Aug_29_2023.html",
+    "href": "posts/Logs/Aug_29_2023.html",
+    "title": "Aug_19_2023",
+    "section": "",
+    "text": "classes_dict.json\n\nUse a json file to read classes, it should be easier to rerun the model if we are training with new scheme, which has more data.\n\nVocDataset\n\nUse recurssive parsing function\nAdd area key to target for future calculating UoI\nAdd iscrowd key to target to indicated overlapping objects\n\nData directory tree\n\nTo make dataset instancing easier"
+  },
+  {
+    "objectID": "posts/Logs/Aug_29_2023.html#recent-goals",
+    "href": "posts/Logs/Aug_29_2023.html#recent-goals",
+    "title": "Aug_19_2023",
+    "section": "Recent goals",
+    "text": "Recent goals\n\nRewrite xml modification function\n\nW/H of the image –> add a get_height/width function in VocDataset\nOverlapping information as in difficult\nReprocess the xmls\nMake sure the boxes are more accurate\n\nWhat to do if “no object” show up when getting the item\nRemove the rgb in the images"
+  },
+  {
+    "objectID": "posts/Logs/Aug_29_2023.html#future-goals",
+    "href": "posts/Logs/Aug_29_2023.html#future-goals",
+    "title": "Aug_19_2023",
+    "section": "Future goals",
+    "text": "Future goals\n\nImplement the rest of the FasterRcnn\nLook into TEED\nAny changes can be made to the receptive field?\nOptimization?"
   }
 ]

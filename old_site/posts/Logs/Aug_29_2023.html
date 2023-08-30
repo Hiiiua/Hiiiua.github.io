@@ -9,7 +9,7 @@
 <meta name="author" content="Hiiiua">
 <meta name="dcterms.date" content="2023-08-29">
 
-<title>Muxin Hua - Aug_29_2023</title>
+<title>Muxin Hua - Aug_19_2023</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -100,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Aug_29_2023</h1>
+      <h1 class="title">Aug_19_2023</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">Logs</div>
               </div>
@@ -138,9 +138,53 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>Not working?</p>
+<section id="done" class="level1">
+<h1>Done</h1>
+<ul>
+<li><p><code>classes_dict.json</code></p>
+<ul>
+<li>Use a json file to read classes, it should be easier to rerun the model if we are training with new scheme, which has more data.</li>
+</ul></li>
+<li><p><code>VocDataset</code></p>
+<ul>
+<li><p>Use recurssive parsing function</p></li>
+<li><p>Add <code>area</code> key to <code>target</code> for future calculating UoI</p></li>
+<li><p>Add <code>iscrowd</code> key to <code>target</code> to indicated overlapping objects</p></li>
+</ul></li>
+<li><p><code>Data</code> directory tree</p>
+<ul>
+<li>To make dataset instancing easier</li>
+</ul></li>
+</ul>
+</section>
+<section id="todos" class="level1">
+<h1>Todos</h1>
+<section id="recent-goals" class="level2">
+<h2 class="anchored" data-anchor-id="recent-goals">Recent goals</h2>
+<ul>
+<li><p>Rewrite xml modification function</p>
+<ul>
+<li><p>W/H of the image –&gt; add a get_height/width function in <code>VocDataset</code></p></li>
+<li><p>Overlapping information as in <code>difficult</code></p></li>
+<li><p>Reprocess the xmls</p></li>
+<li><p>Make sure the boxes are more accurate</p></li>
+</ul></li>
+<li><p>What to do if “no object” show up when getting the item</p></li>
+<li><p>Remove the rgb in the images</p></li>
+</ul>
+</section>
+<section id="future-goals" class="level2">
+<h2 class="anchored" data-anchor-id="future-goals">Future goals</h2>
+<ul>
+<li><p>Implement the rest of the FasterRcnn</p></li>
+<li><p>Look into TEED</p></li>
+<li><p>Any changes can be made to the receptive field?</p></li>
+<li><p>Optimization?</p></li>
+</ul>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
