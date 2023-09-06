@@ -14,9 +14,9 @@
     "text": "This is the first post in a Quarto blog. Welcome!\nLet’s see if i can make any change\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
   },
   {
-    "objectID": "posts/Logs/Sep_04_2023.html",
-    "href": "posts/Logs/Sep_04_2023.html",
-    "title": "Sep_04_2023",
+    "objectID": "posts/Logs/Sep_06_2023.html",
+    "href": "posts/Logs/Sep_06_2023.html",
+    "title": "Sep_05_2023",
     "section": "",
     "text": "Done\n\nStart using IntelliJ to take advantage of debugger to read source code.\nFind a good repo that has most thing structured and well-commented. I cloned this repo and made changes to the FasterRCNN project, the main function should mostly work.\n\nMost of fitting work is import-related. Relative path doesn’t work in my project, but I’m worry about importing the whole script will slow down the code running.\nIn train_utils/coco_eval, import torch.six_ to call a string_class doesn’t work because unable to import `torch._six`. This could because of torch version, what i’m currently working on is “2.0.1”.\nSome highlights of this Repo:\n\nCOCO metrics like mAP (Mean Average Precision) has been nicely set up, so I don’t need to spend time recreating the wheels. We should be able quantitatively evaluate our model not only by how the overall detection works, but also by its performance on large/median/small ground truth boxes. These categorized performance report probably will help us to identify whether the “receiptive filed” guess stands a point or not.\nThe whole structure can be easily edited if we have some new ideas of modifying the structure.\n\n\nRead a paper about generating oriented boxes. Basically it’s replacing the RPN part in Faster RCNN with a new network that propose oriented boxes.\n\nMore than just generating 4 box regression parameters for each box, this network generates anotehr rotation angle parameter \\(\\theta\\) to calculate loss.\n\nIt has a coarse box scores that responsible and then refine the parameters to generate proposal regions.\n\nThis network is similar to RNP in terms of positive/ negative sampling to calculate loss.\nSince is is like a “better-RPN”, this network can be easily benchmark to Fast RCNN for training.\nObviously the RoI’s are better, so does the mAP.\n\n\n\n\nTodos\n\nReimplement split_data function\nReimplement a function to modify xml files, so we could have a result as a starting point for the new model.\n\nProbably use an argument to indicate if I want to do oriented proposals.\nReally need to add is_crowd attribute.\nNeed to add get_width and get_height method in my_dataset.\n\nSkimmed at Samia’s project, it’s a decomposition + a GAN model, need to look into the details to get that run with our data.\n\nCould this be an easier replacement?"
   },
@@ -46,7 +46,7 @@
     "href": "index.html",
     "title": "Ideas",
     "section": "",
-    "text": "Sep_04_2023\n\n\n\n\n\n\n\nLogs\n\n\n\n\n\n\n\n\n\n\n\nAug 29, 2023\n\n\nHiiiua\n\n\n\n\n\n\n  \n\n\n\n\nAug_29_2023\n\n\n\n\n\n\n\nLogs\n\n\n\n\n\n\n\n\n\n\n\nAug 29, 2023\n\n\nHiiiua\n\n\n\n\n\n\n  \n\n\n\n\nDoes perceiptive field matter?\n\n\n\n\n\n\n\nTodos\n\n\n\n\n\n\n\n\n\n\n\nAug 9, 2023\n\n\nHiiiua\n\n\n\n\n\n\nNo matching items"
+    "text": "Sep_05_2023\n\n\n\n\n\n\n\nLogs\n\n\n\n\n\n\n\n\n\n\n\nSep 6, 2023\n\n\nHiiiua\n\n\n\n\n\n\n  \n\n\n\n\nAug_29_2023\n\n\n\n\n\n\n\nLogs\n\n\n\n\n\n\n\n\n\n\n\nAug 29, 2023\n\n\nHiiiua\n\n\n\n\n\n\n  \n\n\n\n\nDoes perceiptive field matter?\n\n\n\n\n\n\n\nTodos\n\n\n\n\n\n\n\n\n\n\n\nAug 9, 2023\n\n\nHiiiua\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
