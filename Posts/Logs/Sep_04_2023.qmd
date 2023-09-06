@@ -1,0 +1,49 @@
+---
+title: "Sep_04_2023"
+author: "Hiiiua"
+date: "2023-08-29"
+categories: Logs
+---
+
+# Done
+
+-   Start using IntelliJ to take advantage of debugger to read source code.
+
+-   Find a good [repo](https://github.com/WZMIAOMIAO/deep-learning-for-image-processing/tree/master/pytorch_object_detection/faster_rcnn) that has most thing structured and well-commented. I cloned this repo and made changes to the FasterRCNN project, the main function should mostly work.
+
+    -   Most of fitting work is import-related. Relative path doesn't work in my project, but I'm worry about **importing** **the whole script will slow down the code running.**
+
+    -   In *train_utils/coco_eval*, `import torch.six_` to call a `string_class` doesn't work because unable to import \`torch.\_six\`. This could because of torch version, what i'm currently working on is "2.0.1".
+
+    -   Some highlights of this Repo:
+
+        -   COCO metrics like mAP (Mean Average Precision) has been nicely set up, so I don't need to spend time recreating the wheels. We should be able quantitatively evaluate our model not only by how the overall detection works, but also by its performance on large/median/small ground truth boxes. These categorized performance report probably will help us to identify whether the "receiptive filed" guess stands a point or not.
+
+        -   The whole structure can be easily edited if we have some new ideas of modifying the structure.
+
+-   Read [a paper](http://arxiv.org/abs/2110.01931) about generating oriented boxes. Basically it's replacing the RPN part in Faster RCNN with a new network that propose oriented boxes.
+
+    -   More than just generating 4 box regression parameters for each box, this network generates anotehr rotation angle parameter $\theta$ to calculate loss.
+
+        -   It has a coarse box scores that responsible and then refine the parameters to generate proposal regions.
+
+    -   This network is similar to RNP in terms of positive/ negative sampling to calculate loss.
+
+    -   Since is is like a "better-RPN", this network can be easily benchmark to Fast RCNN for training.
+
+    -   Obviously the RoI's are better, so does the mAP.
+
+# Todos
+
+-   Reimplement `split_data` function
+
+-   Reimplement a function to modify xml files, so we could have a result as a starting point for the new model.
+
+    -   Probably use an argument to indicate if I want to do *oriented proposals.*
+
+    -   Really need to add `is_crowd` attribute.
+    -   Need to add `get_width` and `get_height` method in `my_dataset`.
+
+-   Skimmed at [Samia's project](https://github.com/Samia067/ShoeRinsics), it's a decomposition + a GAN model, need to look into the details to get that run with our data.
+
+    -   Could [this](https://github.com/xavysp/TEED) be an easier replacement?
