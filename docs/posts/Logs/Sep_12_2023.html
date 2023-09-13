@@ -7,9 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Hiiiua">
-<meta name="dcterms.date" content="2023-09-06">
 
-<title>Muxin Hua - Sep_06_2023</title>
+<title>Muxin Hua - Sep_12_2023</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -101,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Sep_06_2023</h1>
+      <h1 class="title">Sep_12_2023</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">Logs</div>
               </div>
@@ -118,12 +117,6 @@ ul.task-list li input[type="checkbox"] {
             </div>
     </div>
       
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">September 6, 2023</p>
-      </div>
-    </div>
     
       
     </div>
@@ -142,43 +135,37 @@ ul.task-list li input[type="checkbox"] {
 <section id="done" class="level1">
 <h1>Done</h1>
 <ul>
-<li><p>Start using IntelliJ to take advantage of debugger to read source code.</p></li>
-<li><p>Find a good <a href="https://github.com/WZMIAOMIAO/deep-learning-for-image-processing/tree/master/pytorch_object_detection/faster_rcnn">repo</a> that has most thing structured and well-commented. I cloned this repo and made changes to the FasterRCNN project, the main function should mostly work.</p>
+<li><p>Find something <a href="https://stackoverflow.com/questions/49629933/ground-truth-pixel-labels-in-pascal-voc-for-semantic-segmentation">here</a> to remove pixels, might be helpful in the future by generating object detection annotations from segmentation annotations.</p></li>
+<li><p>Half way of implementing <code>to_VOC</code> to make our xml files to VOC 2012 format.</p></li>
+<li><p>All the helper functions are in <code>xml_utils</code>, they have been properly commented.</p>
 <ul>
-<li><p>Most of fitting work is import-related. Relative path doesn’t work in my project, but I’m worry about <strong>importing</strong> <strong>the whole script will slow down the code running.</strong></p></li>
-<li><p>In <em>train_utils/coco_eval</em>, <code>import torch.six_</code> to call a <code>string_class</code> doesn’t work because unable to import `torch._six`. This could because of torch version, what i’m currently working on is “2.0.1”.</p></li>
-<li><p>Some highlights of this Repo:</p>
+<li><p>These functions should be quite general, especially the ones like <code>get_path</code>, <code>get_xml_dict</code>. They can be easily modified to do most xml file related work.</p></li>
+<li><p><code>visualize_current_xml</code> has some font problem, doesn’t matter though, for now I’m just use it to visualize our annotations. I do have some findings that I overlooked before:</p>
 <ul>
-<li><p>COCO metrics like mAP (Mean Average Precision) has been nicely set up, so I don’t need to spend time recreating the wheels. We should be able quantitatively evaluate our model not only by how the overall detection works, but also by its performance on large/median/small ground truth boxes. These categorized performance report probably will help us to identify whether the “receiptive filed” guess stands a point or not.</p></li>
-<li><p>The whole structure can be easily edited if we have some new ideas of modifying the structure.</p></li>
+<li><p>Most polygons (will confirm this in a week) are <em>exclude</em>, which means they don’ t really count as a class, more of a “background”. Maybe useful for training RPN?</p></li>
+<li><p>The rest are quadrilaterals — some are non-rectangular, some are tilted rectangular, some are vertical rectangular. The second should be convenient to use the oriented boxes in the paper mentioned last week. The last one is perfect for current basic model training. There might be some way to transform the first and second one for current training:</p>
+<ul>
+<li><p>1) The most crude one, just to get the maximum and minimum coordinates. This method doesn’t care which case the box coming from. This way guarantees the object in the box, but because we have a lot of shapes and lines going on, it may also introduce misleading information in the learning. But will try this first.</p></li>
+<li><p>2) As mentioned above, the first and second case matter if we are attaching the oriented box network to fastrcnn, so I’ll discuss the two cases separately.</p>
+<ul>
+<li><p>i) We actually need to differentiate these two cases before we can proceed. Because we have coordinates of all points, we can calculate the angles at each point by vector operations, if all the angles are 90 degrees, we can put this box into case 2 (tilted rectangular).</p></li>
+<li><p>ii) If we need a vertical box for current basic fasterrcnn training, a rotation matrix would be helpful.</p>
+<p><span class="math display">\[
+x_{new} = x * cos(\theta) - y * sin(\theta)\\
+y_{new} = x * sin(\theta) + y * cos(\theta)
+\]</span></p></li>
+<li><p>iii) If we find a box unfortunately falls in the quadrilateral category, we will make it rectangular followed by making it vertical. We first look at the angles, pick the point has angle most close to 90 degrees as reference point, expanding the box to make it a rectangle. Then we can rotate it as what we do to tilted rectangle.</p></li>
 </ul></li>
 </ul></li>
-<li><p>Read <a href="http://arxiv.org/abs/2110.01931">a paper</a> about generating oriented boxes. Basically it’s replacing the RPN part in Faster RCNN with a new network that propose oriented boxes.</p>
-<ul>
-<li><p>More than just generating 4 box regression parameters for each box, this network generates anotehr rotation angle parameter <span class="math inline">\(\theta\)</span> to calculate loss.</p>
-<ul>
-<li>It has a coarse box scores that responsible and then refine the parameters to generate proposal regions.</li>
+<li><p>Not sure which is the best approach, for now I’m going with the crude approach so we can have some results as a starting point. Hopefully I can have this part completed next week and have a result.</p></li>
 </ul></li>
-<li><p>This network is similar to RNP in terms of positive/ negative sampling to calculate loss.</p></li>
-<li><p>Since is is like a “better-RPN”, this network can be easily benchmark to Fast RCNN for training.</p></li>
-<li><p>Obviously the RoI’s are better, so does the mAP.</p></li>
 </ul></li>
 </ul>
 </section>
-<section id="todos" class="level1">
-<h1>Todos</h1>
+<section id="todo" class="level1">
+<h1>Todo</h1>
 <ul>
-<li><p>Reimplement <code>split_data</code> function</p></li>
-<li><p>Reimplement a function to modify xml files, so we could have a result as a starting point for the new model.</p>
-<ul>
-<li><p>Probably use an argument to indicate if I want to do <em>oriented proposals.</em></p></li>
-<li><p>Really need to add <code>is_crowd</code> attribute.</p></li>
-<li><p>Need to add <code>get_width</code> and <code>get_height</code> method in <code>my_dataset</code>.</p></li>
-</ul></li>
-<li><p>Skimmed at <a href="https://github.com/Samia067/ShoeRinsics">Samia’s project</a>, it’s a decomposition + a GAN model, need to look into the details to get that run with our data.</p>
-<ul>
-<li>Could <a href="https://github.com/xavysp/TEED">this</a> be an easier replacement?</li>
-</ul></li>
+<li>This semester feels like too many things to do… Already have wait to be done things from the weeks before, I need to have basic results asap before I come up with weird ideas!!</li>
 </ul>
 
 

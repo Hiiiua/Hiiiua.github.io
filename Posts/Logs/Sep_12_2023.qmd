@@ -1,0 +1,44 @@
+---
+title: "Sep_12_2023"
+author: "Hiiiua"
+categories: Logs
+---
+
+# Done
+
+-   Find something [here](https://stackoverflow.com/questions/49629933/ground-truth-pixel-labels-in-pascal-voc-for-semantic-segmentation) to remove pixels, might be helpful in the future by generating object detection annotations from segmentation annotations.
+
+-   Half way of implementing `to_VOC` to make our xml files to VOC 2012 format.
+
+-   The network part has been completed, but I'll commit after a successful training --- it just not easy to commit and remove a whole project if I'm making any changes.
+
+-   All the helper functions are in `xml_utils`, they have been properly commented.
+
+    -   These functions should be quite general, especially the ones like `get_path`, `get_xml_dict`. They can be easily modified to do most xml file related work.
+
+    -   `visualize_current_xml` has some font problem, doesn't matter though, for now I'm just use it to visualize our annotations. I do have some findings that I overlooked before:
+
+        -   Most polygons (will confirm this in a week) are *exclude*, which means they don' t really count as a class, more of a "background". Maybe useful for training RPN?
+
+        -   The rest are quadrilaterals --- some are non-rectangular, some are tilted rectangular, some are vertical rectangular. The second should be convenient to use the oriented boxes in the paper mentioned last week. The last one is perfect for current basic model training. There might be some way to transform the first and second one for current training:
+
+            -   1\) The most crude one, just to get the maximum and minimum coordinates. This method doesn't care which case the box coming from. This way guarantees the object in the box, but because we have a lot of shapes and lines going on, it may also introduce misleading information in the learning. But will try this first.
+
+            -   2\) As mentioned above, the first and second case matter if we are attaching the oriented box network to fastrcnn, so I'll discuss the two cases separately.
+
+                -   i\) We actually need to differentiate these two cases before we can proceed. Because we have coordinates of all points, we can calculate the angles at each point by vector operations, if all the angles are 90 degrees, we can put this box into case 2 (tilted rectangular).
+
+                -   ii\) If we need a vertical box for current basic fasterrcnn training, a rotation matrix would be helpful.
+
+                    $$
+                    x_{new} = x * cos(\theta) - y * sin(\theta)\\
+                    y_{new} = x * sin(\theta) + y * cos(\theta)
+                    $$
+
+                -   iii\) If we find a box unfortunately falls in the quadrilateral category, we will make it rectangular followed by making it vertical. We first look at the angles, pick the point has angle most close to 90 degrees as reference point, expanding the box to make it a rectangle. Then we can rotate it as what we do to tilted rectangle.
+
+        -   Not sure which is the best approach, for now I'm going with the crude approach so we can have some results as a starting point. Hopefully I can have this part completed next week and have a result.
+
+# Todo
+
+-   This semester feels like too many things to do... Already have wait to be done things from the weeks before, I need to have basic results asap before I come up with weird ideas!!
