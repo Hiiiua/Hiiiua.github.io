@@ -1,0 +1,21 @@
+---
+title: "Sep_20_2023"
+author: "Hiiiua"
+categories: Logs
+---
+
+# Done
+
+-   Implemented `xml_utils`. There are two ways taking care of the quad or oriented rectangles.
+    -   `crude_expand_box` is taking the xmax, xmin, ymax, ymin no matter what.
+    -   A quad to oriented rectangle to vertical box approach.
+        (1) Assume we have a quad, we will first use `quad_to_rectangle` to produce an oriented rectangle coordinates from the quad. This step probably produce negative values, need to take care of this by `crop` function.
+
+        (2) Now we have an oriented rectangle, we will use `oriented_to_vertical`. We will use IoU to decide if the oriented box should go clockwise or counter clockwise. For example, we have three rectangles in the following image, the blue oriented one is the oriented rectangle we want to work on, vertical blue and horizontal red are two possible ways to rotate the blue one. Eventually we want to get red, horizontal one because it has a larger intersection of union.
+
+            ![](sep_20_IoU.jpg)
+    -   Most xml files have been modified.
+
+# Todo
+
+-   There are chances that `quad_to_rectangle` produces negative coordinates which is beyond the image scope, so I need to write a `crop` function to take care of that.

@@ -8,7 +8,7 @@
 
 <meta name="author" content="Hiiiua">
 
-<title>Muxin Hua - Sep_12_2023</title>
+<title>Muxin Hua - Sep_20_2023</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,7 +60,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -100,7 +99,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Sep_12_2023</h1>
+      <h1 class="title">Sep_20_2023</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">Logs</div>
               </div>
@@ -135,38 +134,23 @@ ul.task-list li input[type="checkbox"] {
 <section id="done" class="level1">
 <h1>Done</h1>
 <ul>
-<li><p>Find something <a href="https://stackoverflow.com/questions/49629933/ground-truth-pixel-labels-in-pascal-voc-for-semantic-segmentation">here</a> to remove pixels, might be helpful in the future by generating object detection annotations from segmentation annotations.</p></li>
-<li><p>Half way of implementing <code>to_VOC</code> to make our xml files to VOC 2012 format.</p></li>
-<li><p>The network part has been completed, but I’ll commit after a successful training — it just not easy to commit and remove a whole project if I’m making any changes.</p></li>
-<li><p>All the helper functions are in <code>xml_utils</code>, they have been properly commented.</p>
+<li>Implemented <code>xml_utils</code>. There are two ways taking care of the quad or oriented rectangles.
 <ul>
-<li><p>These functions should be quite general, especially the ones like <code>get_path</code>, <code>get_xml_dict</code>. They can be easily modified to do most xml file related work.</p></li>
-<li><p><code>visualize_current_xml</code> has some font problem, doesn’t matter though, for now I’m just use it to visualize our annotations. I do have some findings that I overlooked before:</p>
-<ul>
-<li><p>Most polygons (will confirm this in a week) are <em>exclude</em>, which means they don’ t really count as a class, more of a “background”. Maybe useful for training RPN?</p></li>
-<li><p>The rest are quadrilaterals — some are non-rectangular, some are tilted rectangular, some are vertical rectangular. The second should be convenient to use the oriented boxes in the paper mentioned last week. The last one is perfect for current basic model training. There might be some way to transform the first and second one for current training:</p>
-<ul>
-<li><p>1) The most crude one, just to get the maximum and minimum coordinates. This method doesn’t care which case the box coming from. This way guarantees the object in the box, but because we have a lot of shapes and lines going on, it may also introduce misleading information in the learning. But will try this first.</p></li>
-<li><p>2) As mentioned above, the first and second case matter if we are attaching the oriented box network to fastrcnn, so I’ll discuss the two cases separately.</p>
-<ul>
-<li><p>i) We actually need to differentiate these two cases before we can proceed. Because we have coordinates of all points, we can calculate the angles at each point by vector operations, if all the angles are 90 degrees, we can put this box into case 2 (tilted rectangular).</p></li>
-<li><p>ii) If we need a vertical box for current basic fasterrcnn training, a rotation matrix would be helpful.</p>
-<p><span class="math display">\[
-x_{new} = x * cos(\theta) - y * sin(\theta)\\
-y_{new} = x * sin(\theta) + y * cos(\theta)
-\]</span></p></li>
-<li><p>iii) If we find a box unfortunately falls in the quadrilateral category, we will make it rectangular followed by making it vertical. We first look at the angles, pick the point has angle most close to 90 degrees as reference point, expanding the box to make it a rectangle. Then we can rotate it as what we do to tilted rectangle.</p></li>
-</ul></li>
-</ul></li>
-<li><p>Not sure which is the best approach, for now I’m going with the crude approach so we can have some results as a starting point. Hopefully I can have this part completed next week and have a result.</p></li>
-</ul></li>
+<li><code>crude_expand_box</code> is taking the xmax, xmin, ymax, ymin no matter what.</li>
+<li>A quad to oriented rectangle to vertical box approach.
+<ol type="1">
+<li><p>Assume we have a quad, we will first use <code>quad_to_rectangle</code> to produce an oriented rectangle coordinates from the quad. This step probably produce negative values, need to take care of this by <code>crop</code> function.</p></li>
+<li><p>Now we have an oriented rectangle, we will use <code>oriented_to_vertical</code>. We will use IoU to decide if the oriented box should go clockwise or counter clockwise. For example, we have three rectangles in the following image, the blue oriented one is the oriented rectangle we want to work on, vertical blue and horizontal red are two possible ways to rotate the blue one. Eventually we want to get red, horizontal one because it has a larger intersection of union.</p>
+<p><img src="sep_20_IoU.jpg" class="img-fluid"></p></li>
+</ol></li>
+<li>Most xml files have been modified.</li>
 </ul></li>
 </ul>
 </section>
 <section id="todo" class="level1">
 <h1>Todo</h1>
 <ul>
-<li>This semester feels like too many things to do… Already have wait to be done things from the weeks before, I need to have basic results asap before I come up with weird ideas!!</li>
+<li>There are chances that <code>quad_to_rectangle</code> produces negative coordinates which is beyond the image scope, so I need to write a <code>crop</code> function to take care of that.</li>
 </ul>
 
 
