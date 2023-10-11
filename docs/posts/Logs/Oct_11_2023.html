@@ -60,6 +60,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -134,24 +135,23 @@ ul.task-list li input[type="checkbox"] {
 <section id="done" class="level1">
 <h1>Done</h1>
 <ul>
-<li>Implemented <code>xml_utils</code>. There are two ways taking care of the quad or oriented rectangles.
+<li><p>The new model is finally WORKING!!</p>
+<p><img src="working_model.png" class="img-fluid"></p></li>
+<li><p>Metrics:</p>
 <ul>
-<li><code>crude_expand_box</code> is taking the xmax, xmin, ymax, ymin no matter what.</li>
-<li>A quad to oriented rectangle to vertical box approach.
-<ol type="1">
-<li><p>Assume we have a quad, we will first use <code>quad_to_rectangle</code> to produce an oriented rectangle coordinates from the quad. This step probably produce negative values, need to take care of this by <code>crop</code> function.</p></li>
-<li><p>Now we have an oriented rectangle, we will use <code>oriented_to_vertical</code>. We will use IoU to decide if the oriented box should go clockwise or counter clockwise. For example, we have three rectangles in the following image, the blue oriented one is the oriented rectangle we want to work on, vertical blue and horizontal red are two possible ways to rotate the blue one. Eventually we want to get red, horizontal one because it has a larger intersection of union.</p>
-<p><img src="sep_20_IoU.jpg" class="img-fluid"></p></li>
-</ol></li>
-<li>Most xml files have been modified.</li>
-<li>Some unexpected bug from creating dataset.</li>
+<li><p>All are averaged over all classes.</p></li>
+<li><p>IoU=0.5: 0.95, AP with setting threshold of 0.5 to 0.95 with pace 0.05.</p></li>
+<li><p>IoU=0.5: Pascal VOC metric (what we are using).</p></li>
+<li><p>Area=large, medium, small corresponding to <span class="math inline">\(Area&gt;96^2\)</span>, <span class="math inline">\(96^2&gt;Area&gt;32^2\)</span> and <span class="math inline">\(32^2&gt;Area\)</span>. By looking at these metrics, we would see if the model is good at detecting large, medium or small objects.</p></li>
+<li><p>maxDets are the maximum predicted objects allowed.</p></li>
 </ul></li>
+<li><p>The metric values now are based on 4 train and 4 valid data, so it is ok to have so many zeros. Hopefully we will get more reasonable results on the whole data we have.</p></li>
 </ul>
 </section>
 <section id="todo" class="level1">
 <h1>Todo</h1>
 <ul>
-<li>There are chances that <code>quad_to_rectangle</code> produces negative coordinates which is beyond the image scope, so I need to write a <code>crop</code> function to take care of that.</li>
+<li>The plan is uploading everything to hcc and submit jobs to get preliminary results. Finger crossed for that!</li>
 </ul>
 
 

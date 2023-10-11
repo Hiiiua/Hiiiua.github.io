@@ -1,0 +1,29 @@
+---
+title: "Sep_20_2023"
+author: "Hiiiua"
+categories: Logs
+---
+
+# Done
+
+-   The new model is finally WORKING!!
+
+    ![](working_model.png)
+
+-   Metrics:
+
+    -   All are averaged over all classes.
+
+    -   IoU=0.5: 0.95, AP with setting threshold of 0.5 to 0.95 with pace 0.05.
+
+    -   IoU=0.5: Pascal VOC metric (what we are using).
+
+    -   Area=large, medium, small corresponding to $Area>96^2$, $96^2>Area>32^2$ and $32^2>Area$. By looking at these metrics, we would see if the model is good at detecting large, medium or small objects.
+
+    -   maxDets are the maximum predicted objects allowed.
+
+-   The metric values now are based on 4 train and 4 valid data, so it is ok to have so many zeros. Hopefully we will get more reasonable results on the whole data we have.
+
+# Todo
+
+-   The plan is uploading everything to hcc and submit jobs to get preliminary results. Finger crossed for that!
