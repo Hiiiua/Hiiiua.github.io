@@ -1,0 +1,29 @@
+---
+title: "Rstudio Not Connecting R..."
+author: "Hiiiua"
+categories: Logs
+---
+
+I ran into a Rstudio not connecting R yesterday. Here's what I saw:
+
+![](fig/rstudio_connect_error.jpeg){width="385"}
+
+Long story short — this command from [here](https://support.posit.co/hc/en-us/articles/200534577-Resetting-RStudio-Desktop-s-State) worked:
+
+```         
+mv ~/.local/share/rstudio ~/.local/share/rstudio-backup
+```
+
+How did I break it down? Basically, storage overflow. I created three variables by `seq` functions, each has 100 double type numbers. Then I used `rep` to create all possible combinations. Then I did some calculations for each combination by `mapply`. I have to admit, using `mapply` and tidyverse package, which I recently got familiar with in a workshop, are super handy. So I didn't bother to write a function to loop over everything, which I would do before I went to the workshop. Anyway, these whole operations broke down my R-studio -- it was freeze. I decided to restart R session immediately, but ended up with the connection failure showing up.
+
+What I have tried:
+
+-   I restart my computer, didn't solve the problem.
+
+-   I went to troubleshot, checked virus or firewall, not working either.
+
+-   I uninstalled Rstudio, same error page.
+
+-   Found the link and command to create a backup, it worked. But when I tried to open an existed project, the error page reappeared.
+
+    #### **Turned out I need to recreate projects to make things work. I didn't even bother to reinstall packages! Totally amazed by Rstudio!!!**

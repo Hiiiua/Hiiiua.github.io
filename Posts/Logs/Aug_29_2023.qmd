@@ -1,5 +1,5 @@
 ---
-title: "Aug_19_2023"
+title: "Aug_29_2023"
 author: "Hiiiua"
 date: "2023-08-29"
 categories: Logs
